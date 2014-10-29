@@ -35,6 +35,7 @@ void insert(element item)
 	else
 		front=temp;
 	rear=temp;
+	rear->link=NULL;
 }
 
 element delete()
@@ -66,7 +67,6 @@ void display()
 
 int main(void) {
 	int choice;
-
 	element item;
 	while(1)
 	{
