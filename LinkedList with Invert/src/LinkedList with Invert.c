@@ -63,14 +63,31 @@ void search(listptr first, listptr* x, listptr* trail, int val)
 	}
 	*x=NULL;
 }
-
+listptr invert(listptr lead)
+{
+	listptr middle,trail;
+	middle=NULL;
+	while(lead)
+	{
+		trail=middle;
+		middle=NULL;
+		while(lead)
+		{
+			trail=middle;
+			middle=lead;
+			lead=lead->link;
+			middle->link=trail;
+		}
+	}
+	return middle;
+}
 
 int main(void) {
 	int val,choice;
 	listptr x=NULL, first=NULL, trail=NULL;
 	while(1)
 	{
-		printf("Enter\n 1. Insert\n 2. Delete\n 3. Display\n 4. Exit");
+		printf("Enter\n 1. Insert\n 2. Delete\n 3. Display\n 4. Invert\n 5. Exit");
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -102,6 +119,8 @@ int main(void) {
 		case 3:
 			display(first);
 			break;
+		case 4:
+			first=invert(first);
 		}
 	}
 }
