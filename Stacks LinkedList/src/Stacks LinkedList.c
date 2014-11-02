@@ -31,6 +31,8 @@ void push(element item)
 }
 element pop()
 {
+	stackptr temp;
+	temp=top;
 	element item;
 	if(!top)
 	{
@@ -39,7 +41,7 @@ element pop()
 	}
 	item=top->data;
 	top=top->link;
-	free(top);
+	free(temp);
 	return item;
 
 }
@@ -54,6 +56,7 @@ void display()
 int main(void) {
 	int choice;
 	element item;
+	top=NULL;
 	while(1)
 	{
 		printf("Enter\n 1. Push\n 2. Pop\n 3.Display");

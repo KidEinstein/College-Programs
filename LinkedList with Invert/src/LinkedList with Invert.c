@@ -67,18 +67,15 @@ listptr invert(listptr lead)
 {
 	listptr middle,trail;
 	middle=NULL;
+
 	while(lead)
 	{
 		trail=middle;
-		middle=NULL;
-		while(lead)
-		{
-			trail=middle;
-			middle=lead;
-			lead=lead->link;
-			middle->link=trail;
-		}
+		middle=lead;
+		lead=lead->link;
+		middle->link=trail;
 	}
+
 	return middle;
 }
 
