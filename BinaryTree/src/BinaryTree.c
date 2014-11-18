@@ -44,7 +44,43 @@ boolean add(treeptr* ele)
         else
                 return false;
 }
+treeptr queue[10];
+int front,rear;
+void addq(treeptr ptr)
+{
+	queue[rear++]=ptr;
+}
+treeptr deleteq()
+{
+	if(front!=rear)
+		return queue[front++];
+	return NULL;
+}
 
+void levelOrder(treeptr ptr)
+{
+	front=rear=0;
+
+	if(!ptr)
+		return;
+	addq(ptr);
+	for(;;)
+	{
+		ptr=deleteq();
+		if(ptr)
+		{
+			printf("%d\t",ptr->data);
+			if(ptr->llink)
+				addq(ptr->llink);
+			if(ptr->rlink)
+				addq(ptr->rlink);
+
+		}
+		else
+			break;
+	}
+
+}
 int main()
 {
         treeptr root;
@@ -62,7 +98,7 @@ int main()
         while(1)
         {
 
-                printf("1. Add node\n 2. Display Inorder\n");
+                printf("1. Add node\n 2. Display InOrder\n 3. Display LevelOrder");
                 scanf("%d",&choice);
                 switch(choice)
                 {
@@ -101,9 +137,13 @@ int main()
                         break;
 
                 case 2:
-                        printf("Tree is\n");
                         inOrder(root);
+                        printf("\n");
                         break;
+                case 3:
+                		levelOrder(root);
+                		printf("\n");
+                		break;
                 }
         }
 }
