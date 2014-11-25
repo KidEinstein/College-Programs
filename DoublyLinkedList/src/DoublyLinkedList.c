@@ -67,6 +67,7 @@ void display(nodeptr node)
         {
                 printf("%d\t",node->data);
         }
+        printf("\n");
 }
 int main()
 {
@@ -95,8 +96,10 @@ int main()
                                 printf("Enter item to be deleted");
                                 scanf("%d",&key);
                                 delete(&head, key);
+                                break;
                         case 3:
                                 display(head);
+                                break;
                 }
         }
 }
