@@ -56,7 +56,35 @@ treeptr deleteq()
 		return queue[front++];
 	return NULL;
 }
+treeptr stack[10];
+int top;
+void push(treeptr node)
+{
+	stack[++top]=node;
 
+}
+treeptr pop()
+{
+	if(top==-1)
+		return NULL;
+	return stack[top--];
+}
+void iterInorder(treeptr node)
+{
+	top=-1;
+	for(;;)
+	{
+		for(;node;node=node->llink)
+			push(node);
+
+		node=pop();
+		if(!node)
+			break;
+		printf("%d\t",node->data);
+		node=node->rlink;
+	}
+
+}
 void levelOrder(treeptr ptr)
 {
 	front=rear=0;
@@ -89,7 +117,6 @@ int main()
         scanf("%d",&root->data);
         root->llink=root->rlink=NULL;
         int choice;
-        int data;
         char side;
         boolean added;
 
@@ -98,7 +125,7 @@ int main()
         while(1)
         {
 
-                printf("1. Add node\n 2. Display InOrder\n 3. Display LevelOrder");
+                printf("1. Add node\n 2. Display InOrder\n 3. Display LevelOrder 4. Display Iterative Inorder");
                 scanf("%d",&choice);
                 switch(choice)
                 {
@@ -143,6 +170,9 @@ int main()
                 case 3:
                 		levelOrder(root);
                 		printf("\n");
+                		break;
+                case 4:
+                		iterInorder(root);
                 		break;
                 }
         }
