@@ -5,7 +5,7 @@
 // Copyright   : Your copyright notice
 // Description : Hello World in C++, Ansi-style
 //============================================================================
-#define N 3
+#define N 3 //Number of students
 #include <iostream>
 using namespace std;
 
@@ -31,6 +31,11 @@ public:
 		cout<<"Name: "<<name;
 		cout<<"Age: "<<age;
 	}
+	int getAge()
+	{
+		return age;
+	}
+
 };
 
 class PGStudent : public Student
@@ -58,14 +63,11 @@ public:
 
 
 	}
-	int getAge()
-	{
-		return age;
-	}
 	int getSem()
 	{
 			return sem;
 	}
+
 
 };
 class UGStudent : public Student
@@ -87,10 +89,6 @@ public:
 		cout<<"Sem: "<<sem;
 		cout<<"Fee: "<<fee<<endl;
 
-	}
-	int getAge()
-	{
-		return age;
 	}
 	int getSem()
 	{
@@ -115,7 +113,7 @@ int main()
 	for(int i=0; i<N ; i++)
 	{
 		int sem;
-		sem=ugs[i].getSem();
+		sem=ugs[i].getSem()-1;
 		age_sum[sem]+=ugs[i].getAge();
 		count[sem]++;
 	}
@@ -128,13 +126,17 @@ int main()
 		}
 
 	}
-
 	PGStudent pgs[N];
 	for(int i=0; i<N; i++)
 	{
 			ugs[i].display();
 	}
 	cout<<"PG Students: "<<endl;
+	for(int i=0; i<8 ; i++)
+	{
+		age_sum[i]=0;
+		age_avg[i]=0;
+	}
 	for(int i=0; i<N ; i++)
 	{
 		int sem;
