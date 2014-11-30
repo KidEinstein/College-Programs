@@ -14,7 +14,7 @@ void copy(element* start, element* end, element* newQueue)
     i=newQueue;
     j=start;
     for(; j<end; j++, i++)
-    {
+  {
         *i=*j;
     }
 }
@@ -31,16 +31,21 @@ void queueFull()
         copy(queue, queue+rear+1, newQueue+capacity-start);
     }
     front=2*capacity-1;
-    rear=capacity-1;
+    rear=capacity-2;
     capacity*=2;
     free(queue);
     queue=newQueue;
 }
 void addq(element item)
 {
-    rear=(rear+1)%capacity;
+	int temp=rear;    
+	rear=(rear+1)%capacity;
     if(front==rear)
+	{
+	rear=temp;
         queueFull();
+	rear=(rear+1)%capacity;
+	}
     queue[rear]=item;
 }
 element deleteq()
@@ -54,9 +59,6 @@ element deleteq()
     front=(front+1)%capacity;
     return queue[front];
 }
-
-
-
 void displayq()
 {
     int i;
@@ -65,7 +67,6 @@ void displayq()
         printf("Queue Empty\n");
         return;
     }
-
     for(i=(front+1)%capacity; i!=rear; i=(i+1)%capacity)
         printf("%d\t",queue[i].n);
     printf("%d", queue[i].n);
@@ -100,9 +101,6 @@ void main()
         case 3:
             displayq();
             break;
-
-
         }
     }
-
 }
