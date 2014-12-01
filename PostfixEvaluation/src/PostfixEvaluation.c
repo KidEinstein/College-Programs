@@ -71,7 +71,7 @@ int eval()
 				push(op1*op2);
 				break;
 			case divide:
-				push(op1*op2);
+				push(op1/op2);
 				break;
 			case mod:
 				push(op1%op2);
