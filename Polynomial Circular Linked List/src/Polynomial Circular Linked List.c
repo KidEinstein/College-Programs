@@ -54,13 +54,15 @@ polyptr cpadd(polyptr a, polyptr b)
 		case 0:
 			if(startA==a)
 				done=1;
-			//printf("Equal\n");
-			sum=a->coeff+b->coeff;
-			if(sum)
-				attach(sum,a->expo,&lastC);
+			else
+			{
+				sum=a->coeff+b->coeff;
+				if(sum)
+					attach(sum,a->expo,&lastC);
 
-			a=a->link;
-			b=b->link;
+				a=a->link;
+				b=b->link;
+			}
 			break;
 		case 1:
 			attach(a->coeff,a->expo,&lastC);
