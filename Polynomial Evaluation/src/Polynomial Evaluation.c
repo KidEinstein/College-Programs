@@ -58,3 +58,4 @@ int main()
 	printf("%d",evalPoly(a, terms));
 
 }
+

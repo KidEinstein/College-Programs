@@ -73,7 +73,7 @@ void displayq()
     printf("\n");
     printf("Front: %d Rear: %d\n", front, rear);
 }
-void main()
+int main()
 {
     int choice;
     element item;
