@@ -36,8 +36,15 @@ void insert(element item, int *n)
 
 element deleteHeap(int* n)
 {
+
 	int parent, child;
 	element temp, item;
+	if(*n==0)
+	{
+		printf("Heap Empty\n");
+		item.key=-1;
+		return item;
+	}
 	item = heap[1];
 	temp = heap[(*n)--];
 	parent = 1;
@@ -69,7 +76,7 @@ int main()
 	element item;
 	while(1)
 	{
-		printf("Enter\n 1. Insert\n 2. Display\n 3. Delete\n");
+		printf("Enter\n 1. Insert\n 2. Display\n 3. Delete\n 4. Exit");
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -82,8 +89,13 @@ int main()
 			display(n);
 			break;
 		case 3:
-			printf("Element Deleted: %d\n",deleteHeap(&n).key);
+			item = deleteHeap(&n);
+			if(item.key!=-1)
+				printf("Element Deleted: %d\n",item.key);
 			break;
+
+		case 4:
+			exit(0);
 
 
 		}
