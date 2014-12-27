@@ -90,14 +90,53 @@ void dfs(int v)
 
 	}
 
+}
+int front=0, rear=0;
+int queue[20];
 
+int deleteq()
+{
+	return queue[++front];
+}
+
+void addq(int v)
+{
+	queue[++rear]=v;
+}
+int queueEmpty()
+{
+	if(front==rear)
+		return 1;
+	return 0;
+}
+void bfs(int v)
+{
+	nodeptr w;
+	front=rear=0;
+	printf("%d\t",v);
+	visited[v]=1;
+	addq(v);
+	while(!queueEmpty())
+	{
+		v=deleteq();
+		for(w=graph[v];w;w=w->link)
+		{
+			if(!visited[w->vertex])
+			{
+				printf("%d\t", w->vertex);
+				addq(w->vertex);
+				visited[w->vertex]=1;
+			}
+		}
+
+	}
 }
 int main()
 {
-	int choice;
+	int choice,i;
 	while(1)
 	{
-		printf("1. Create Graph \n2. Display Adjacency List \n3. DFS");
+		printf("1. Create Graph \n2. Display Adjacency List \n3. DFS \n4. BFS");
 		scanf("%d",&choice);
 		switch(choice)
 		{
@@ -108,10 +147,22 @@ int main()
 			displayAdjList();
 			break;
 		case 3:
+			for(i=0;i<n;i++)
+				visited[i]=0;
 			dfs(0);
 			printf("\n");
+			break;
+		case 4:
+			for(i=0;i<n;i++)
+				visited[i]=0;
+			bfs(0);
+			printf("\n");
+			break;
+
 		}
 	}
 }
+
+
 
 
